@@ -21,7 +21,7 @@ import Header from "../Components/Header";
 
 const OPENAI_API_URL =
   "https://api.openai.com/v1/engines/text-davinci-002/completions";
-const API_KEY = `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`;
+const API_KEY = `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`;
 
 const images = [
   { uri: require("../assets/food1.png") },
