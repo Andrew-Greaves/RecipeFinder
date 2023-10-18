@@ -18,10 +18,11 @@ import { React, useState, useEffect, useRef } from "react";
 import { Input, Button, Icon, CheckBox } from "@rneui/themed";
 import axios from "axios";
 import Header from "../Components/Header";
+import {API_KEY} from "@env";
 
 const OPENAI_API_URL =
   "https://api.openai.com/v1/engines/text-davinci-002/completions";
-const API_KEY = `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`;
+
 
 const images = [
   { uri: require("../assets/food1.png") },
@@ -136,6 +137,7 @@ const Home = () => {
           style={{ width: 70, height: 70 }}
         />
         <Header/>
+        
       </View>
       <ScrollView>
         <View style={styles.mainContent}>
