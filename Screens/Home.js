@@ -136,69 +136,72 @@ const Home = () => {
           source={require("../assets/RecipeFinder.png")}
           style={{ width: 70, height: 70 }}
         />
-        <Header/>
+        <Header />
         
       </View>
-      <ScrollView>
-        <View style={styles.mainContent}>
-          <ImageCarousel />
-          <Input
-            value={ingredient}
-            onChangeText={setIngredient}
-            placeholder="Enter ingredient"
-            style={styles.input}
-          />
-          <TouchableOpacity
-            onPress={() => handleAddIngredient()}
-            style={styles.buttonContainer}
-          >
-            <Text style={styles.buttonText}>Add Ingredient</Text>
-          </TouchableOpacity>
-          <FlatList
-            data={ingredientsList}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => (
-              <View style={styles.listItem}>
-                <Text style={{ flex: 1 }}>{item}</Text>
-                <TouchableOpacity
-                  onPress={() => handleRemoveIngredient(index)}
-                  style={styles.removeButton}
-                >
-                  <Text style={styles.removeButtonText}>x</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          />
-          <Text style={[styles.buttonText, { marginTop: 20 }]}>
-            Do you want healthy options?
-          </Text>
-          <View style={{ flexDirection: "row", marginBottom: 40 }}>
-            <CheckBox
-              center
-              title="Yes"
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
-              checked={healthy}
-              onPress={() => {
-                setHealthy(!healthy);
-                setUnhealthy(false);
-              }}
-            />
-
-            <CheckBox
-              center
-              title="No"
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
-              checked={unhealthy}
-              onPress={() => {
-                setUnhealthy(!unhealthy);
-                setHealthy(false);
-              }}
-            />
+      <FlatList
+        data={ingredientsList}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => (
+          <View style={styles.listItem}>
+            <Text style={{ flex: 1 }}>{item}</Text>
+            <TouchableOpacity
+              onPress={() => handleRemoveIngredient(index)}
+              style={styles.removeButton}
+            >
+              <Text style={styles.removeButtonText}>x</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      </ScrollView>
+        )}
+        ListHeaderComponent={
+          <>
+            <ImageCarousel />
+            <Input
+              value={ingredient}
+              onChangeText={setIngredient}
+              placeholder="Enter ingredient"
+              style={styles.input}
+            />
+            <TouchableOpacity
+              onPress={() => handleAddIngredient()}
+              style={styles.buttonContainer}
+            >
+              <Text style={styles.buttonText}>Add Ingredient</Text>
+            </TouchableOpacity>
+          </>
+        }
+        ListFooterComponent={
+          <>
+            <Text style={[styles.buttonText, { marginTop: 20 }]}>
+              Do you want healthy options?
+            </Text>
+            <View style={{ flexDirection: "row", marginBottom: 40 }}>
+              <CheckBox
+                center
+                title="Yes"
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                checked={healthy}
+                onPress={() => {
+                  setHealthy(!healthy);
+                  setUnhealthy(false);
+                }}
+              />
+              <CheckBox
+                center
+                title="No"
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                checked={unhealthy}
+                onPress={() => {
+                  setUnhealthy(!unhealthy);
+                  setHealthy(false);
+                }}
+              />
+            </View>
+          </>
+        }
+      />
       <Modal
         animationType="slide"
         transparent={true}
